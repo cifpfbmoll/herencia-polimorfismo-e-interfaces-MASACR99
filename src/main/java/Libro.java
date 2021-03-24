@@ -79,13 +79,15 @@ public class Libro {
         System.out.println("Escribe el número de copias totales");
         int error_checking = sc.nextInt();
         sc.nextLine();
+        boolean check = true;
         //Bucle para que el usuario se vea forzado a poner almenos una copia
-        while (error_checking < 1){
-            System.out.println("Debe haber almenos una copia!");
-            error_checking = sc.nextInt();
-            sc.nextLine();
+        while(check){
+            try{
+                libro.setCopias(error_checking);
+            }catch(Exception ex){
+                ex.printStackTrace(); //Simplemente imprimimos el error
+            }
         }
-        libro.copias = error_checking;
         System.out.println("Escribe el número de copias disponibles");
         error_checking = sc.nextInt();
         sc.nextLine();
@@ -204,7 +206,8 @@ public class Libro {
      */
     public void setCopias(int copias) {
         if (copias < 1){
-            System.out.println("Como vas a tener menos de 1 copia?");
+            //Usamos un error propio de java
+            throw new IllegalArgumentException("Debe tener almenos una copia");
         }else{
             this.copias = copias;
         }

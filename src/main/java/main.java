@@ -1,6 +1,17 @@
 
 import java.util.Scanner;
 
+
+/*
+IMPORTANTE!!!:
+Como el codigo es extenso y el ejercicio muy simple voy a poner
+aqui el conjunto de errores que se han usado y donde se pueden encontrar:
+1- IllegalArgumentException: En la clase Libro, linea 85 para tratar, throw en linea: 203
+2- Uso de la clase Error (creo que entendi mal el enunciado): En la clase main, lineas: 261 y 270.
+Tambien al final de cada función de menús, menu_libros, menu_personas y menu_reservas como default
+3- Generación y tratamiento de excepción en la misma clase: Clase Bibliotecario lineas 150 y 103.
+*/
+
 /**
  *
  * @author masa
@@ -67,6 +78,13 @@ public class main {
                     //Salir del while
                     menus_peq = false;
                     break;
+                default:
+                    try{
+                        Error error = new Error(1);
+                    }catch(Exception ex){
+                        ex.printStackTrace(); //Simplemente imprimimos el error
+                    }
+                    break;
             }
         }
     }
@@ -120,6 +138,13 @@ public class main {
                 case 5:
                     //Volver al menu anterior
                     menus_peq = false;
+                    break;
+                default:
+                    try{
+                        Error error = new Error(1);
+                    }catch(Exception ex){
+                        ex.printStackTrace(); //Simplemente imprimimos el error
+                    }
                     break;
             }
         }
@@ -203,6 +228,13 @@ public class main {
                         //Volver atrás
                         menus_peq = false;
                         break;
+                    default:
+                        try{
+                            Error error = new Error(1);
+                        }catch(Exception ex){
+                            ex.printStackTrace(); //Simplemente imprimimos el error
+                        }
+                        break;
                 }
             }
         }
@@ -248,7 +280,11 @@ public class main {
                     menu_global = false;
                     break;
                 default:
-                    System.out.println("Parece ser que te equivocaste de letra...");
+                    try{
+                        Error error = new Error(5);
+                    }catch(Exception ex){
+                        ex.printStackTrace(); //Simplemente imprimimos el error
+                    }
                     break;
             }
         }

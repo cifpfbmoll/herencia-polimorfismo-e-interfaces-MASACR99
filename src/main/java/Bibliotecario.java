@@ -1,5 +1,7 @@
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -143,15 +145,25 @@ public class Bibliotecario extends Persona {
         System.out.println("Introduce el NIF del usuario");
         this.setNIF(sc.nextLine());
         System.out.println("Introduce la contraseña del usuario");
-        boolean pass_valid = false;
-        while(!pass_valid){
+        String error_checking = sc.nextLine();
+        //Bucle para que el usuario se vea forzado a poner una contraseña valida
+        boolean check = true;
+        while (check){
             try{
-                this.setPass(sc.nextLine());
-                pass_valid = true;
+                if(error_checking.length()<8){
+                    throw new Exception("Too short");
+                }else{
+                    check = false;
+                }
             }catch(Exception ex){
-                pass_valid = false;
-                System.out.println("Password too short! Try again");
+                System.out.println("Contraseña poco segura");
+                error_checking = sc.nextLine();
             }
+        }
+        try {
+            this.setPass(error_checking);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return this;
     }
